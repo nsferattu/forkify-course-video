@@ -36,6 +36,10 @@ export const loadRecipe = async function (id) {
 
     state.recipe = createRecipeObject(data);
 
+    const savedDirections = localStorage.getItem(`directions_${id}`);
+
+    if (savedDirections) state.recipe.directions = JSON.parse(savedDirections);
+
     if (state.bookmarks.some(bookmark => bookmark.id === id))
       state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
@@ -153,6 +157,10 @@ export const uploadRecipe = async function (newRecipe) {
 
     if (newRecipe['write-your-recipe']) {
       state.recipe.directions = newRecipe['write-your-recipe'];
+      localStorage.setItem(
+        `directions_${state.recipe.id}`,
+        JSON.stringify(newRecipe['write-your-recipe']),
+      );
     }
     addBookmark(state.recipe);
   } catch (err) {
