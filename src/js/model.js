@@ -150,6 +150,10 @@ export const uploadRecipe = async function (newRecipe) {
     };
     const data = await AJAX(`${API_URL}?key=${KEY}`, recipe);
     state.recipe = createRecipeObject(data);
+
+    if (newRecipe['write-your-recipe']) {
+      state.recipe.directions = newRecipe['write-your-recipe'];
+    }
     addBookmark(state.recipe);
   } catch (err) {
     throw err;
