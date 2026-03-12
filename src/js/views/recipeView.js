@@ -87,7 +87,16 @@ class RecipeView extends View {
           </div>
 
           <div class="recipe__directions">
-            <h2 class="heading--2">How to cook it</h2>
+          <h2 class="heading--2">How to cook it</h2>
+          
+          ${
+            this._data.directions
+              ? `
+            <p class="recipe__directions-text">
+              ${this._data.directions}
+            </p>
+          `
+              : `
             <p class="recipe__directions-text">
               This recipe was carefully designed and tested by
               <span class="recipe__publisher">${this._data.publisher}</span>. Please check out
@@ -103,8 +112,10 @@ class RecipeView extends View {
                 <use href="${icons}#icon-arrow-right"></use>
               </svg>
             </a>
-          </div>
-    `;
+          `
+          }
+        </div>
+        `;
   }
 
   _generateMarkupIngredient(ing) {

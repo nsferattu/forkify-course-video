@@ -122,6 +122,12 @@ const controlAddRecipe = async function (newRecipe) {
   }
 };
 
+const logoInteraction = document.querySelector('.header__logo');
+
+logoInteraction.addEventListener('click', function () {
+  window.location.href = window.location.origin + window.location.pathname;
+});
+
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
